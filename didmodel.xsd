@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!-- ********************************************************************************
+
+    This XML document was originally developed in the course of development of the ISO/IEC
+    21000 standard (MPEG-21). This XML document contains either a part of the MPEG-21 schema
+    implementation for one or more MPEG-21 tools as specified by the MPEG-21 Requirements or
+    MPEG-21 examples conformant to the MPEG-21 schemas.
+
+    ISO/IEC gives users of MPEG-21 free license to this XML document or modifications thereof
+    for use in hardware or software products claiming conformance to MPEG-21.
+
+    Those intending to use this XML document in hardware or software products are advised that
+    its use may infringe existing patents. The original developers of this XML document and his/her
+    company, the subsequent editors and their companies, and ISO/IEC have no liability for use of
+    this XML document or modifications thereof in an implementation.
+
+    Copyright is not released for non MPEG-21 conforming products. The organizations who
+    contributed to this XML document retain the full right to use the code for their own purpose,
+    assign or donate their contribution to a third party and inhibit third parties from using their
+    contribution for non MPEG-21 conforming products.
+
+    Copyright (c) 2001-2005 ISO/IEC. 
+
+    This XML document is provided for informative purposes only. If any parts of this XML
+    document contradict the normative part of the corresponding standard document then the
+    normative part should be used as the definitive specification.
+
+    This notice must be included in all copies or derivative works.
+************************************************************************************ -->
+<!--=======================================
+####################################################################
+# ISO/IEC 21000-2:2005                                             #
+#   Information technology                                         #
+#   - Multimedia framework (MPEG-21)                               #
+#     - Part 2: Digital Item Declaration                           #
+#                                                                  #
+# Schema for DID Model abstract Types                              #
+#                                                                  #
+####################################################################
+ =======================================-->
+<schema targetNamespace="urn:mpeg:mpeg21:2002:02-DIDMODEL-NS"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:didmodel="urn:mpeg:mpeg21:2002:02-DIDMODEL-NS"
+  elementFormDefault="qualified" attributeFormDefault="unqualified"
+  version="0.01">
+	<complexType name="DIDBaseType" abstract="true"/>
+	<element name="Container" type="didmodel:ContainerType" abstract="true"/>
+	<complexType name="ContainerType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Item" type="didmodel:ItemType" abstract="true"/>
+	<complexType name="ItemType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Descriptor" type="didmodel:DescriptorType" abstract="true"/>
+	<complexType name="DescriptorType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Statement" type="didmodel:StatementType" abstract="true"/>
+	<complexType name="StatementType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Component" type="didmodel:ComponentType" abstract="true"/>
+	<complexType name="ComponentType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Anchor" type="didmodel:AnchorType" abstract="true"/>
+	<complexType name="AnchorType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Fragment" type="didmodel:FragmentType" abstract="true"/>
+	<complexType name="FragmentType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Condition" type="didmodel:ConditionType" abstract="true"/>
+	<complexType name="ConditionType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Choice" type="didmodel:ChoiceType" abstract="true"/>
+	<complexType name="ChoiceType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Selection" type="didmodel:SelectionType" abstract="true"/>
+	<complexType name="SelectionType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Resource" type="didmodel:ResourceType" abstract="true"/>
+	<complexType name="ResourceType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Annotation" type="didmodel:AnnotationType" abstract="true"/>
+	<complexType name="AnnotationType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+	<element name="Assertion" type="didmodel:AssertionType" abstract="true"/>
+	<complexType name="AssertionType" abstract="true">
+		<complexContent>
+			<extension base="didmodel:DIDBaseType"/>
+		</complexContent>
+	</complexType>
+</schema>
