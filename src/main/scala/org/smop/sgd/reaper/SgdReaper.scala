@@ -29,10 +29,9 @@ object SgdReaper {
         val id = rec.header.identifier.toString.replace("SGD:sgd:mpeg21:", "").replace(":", "-")
         val metadata = rec.metadata.map(_.any.value).head.asInstanceOf[NodeSeq]
 
-        if ((metadata \\ "Descriptor" \ "Statement").exists(_.text.matches("^Kamerstuk.*"))) {
-          val ref = ((metadata \\ "Component" \\ "Resource").head \ "@ref").text
-          println(ref)
-          saveMetadata(id, ref)
+        val ref = ((metadata \\ "Component" \\ "Resource").head \ "@ref").text
+        println(ref)
+        if (saveMetadata(id, ref)) {
           println(id)
           val file = new File(baseDir, id + ".xml")
           file.createNewFile
@@ -40,25 +39,31 @@ object SgdReaper {
           out.write(toXML[RecordType](rec, "record", defaultScope).toString)
           out.close()
         } else {
-          println("Not a Kamerstuk: "+id)
+          println("Not a Kamerstuk: " + id)
         }
     }
   }
 
-  private def saveMetadata(id: String, url: String) {
+  private def saveMetadata(id: String, url: String): Boolean = {
     import dispatch._
 
     val http = new Http
     val req = new Request(url)
+    var done = false
     http(req <> {
       x =>
         val record = x \\ "record"
-        val file = new File(baseDir, id + "-meta.xml")
-        file.createNewFile
-        val out = new PrintWriter(file, "UTF-8")
-        out.write(record.toString)
-        out.close()
+        val isKamerstuk = (record \\ "type").text == "Kamerstuk"
+        if (isKamerstuk) {
+          val file = new File(baseDir, id + "-meta.xml")
+          file.createNewFile
+          val out = new PrintWriter(file, "UTF-8")
+          out.write(record.toString)
+          out.close()
+          done = true
+        }
     })
+    done
   }
 
   private def listKeys {
