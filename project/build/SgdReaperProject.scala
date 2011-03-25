@@ -13,6 +13,8 @@ class SgdReaperProject(info: ProjectInfo) extends DefaultProject(info) with scal
   val oai = "org.smop" %% "oai-reaper" % "0.1-SNAPSHOT" % "compile"
   //val cmis = "org.smop" %% "cmis" % "0.1-SNAPSHOT" % "compile"
   val dispatch = "net.databinder" %% "dispatch-http" % "0.7.8" % "compile"
+  val casbah = "com.mongodb.casbah" %% "casbah" % "2.1.0"
+  
   val specs = "org.scala-tools.testing" %% "specs" % "1.6.6" % "test->default"
 
   override def compileOptions = super.compileOptions ++ Seq(Unchecked)
