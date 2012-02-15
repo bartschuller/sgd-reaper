@@ -92,6 +92,6 @@ object SgdReaper {
       id: HeaderType =>
         out.println(id.identifier)
     }
-    out.close
+    out.close()
   }
 }
