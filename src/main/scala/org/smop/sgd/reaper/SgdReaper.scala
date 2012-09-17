@@ -7,7 +7,8 @@ import xml.{Node, NodeSeq}
 import java.nio.charset.Charset
 
 class SgdReaper extends Reaper("http://services.kb.nl/mdo/oai") {
-  def listIdentifiers(metadataPrefix: String, resumptionToken: String): Product2[Iterator[HeaderType], Option[String]] = ListIdentifiersReq.resume(metadataPrefix)(Some(resumptionToken))
+  def listIdentifiers(metadataPrefix: String, resumptionToken: String): Product2[Iterator[HeaderType], Option[String]] =
+    ListIdentifiersReq.resume(metadataPrefix)(Some(resumptionToken))
 }
 
 object SgdReaper {
@@ -52,11 +53,11 @@ object SgdReaper {
     }
   }
 
-  private def saveMetadata(id: String, url: String): Boolean = {
+  private def saveMetadata(id: String, location: String): Boolean = {
     import dispatch._
 
     val http = new Http
-    val req = new Request(url)
+    val req = new Request(location)
     var done = false
     http(req <> {
       x =>
@@ -83,7 +84,7 @@ object SgdReaper {
     }
   }
 
-  private def listKeys {
+  def listKeys {
     val file = new File("SGD.txt")
     file.createNewFile
     val out = new PrintWriter(file, "UTF-8")
